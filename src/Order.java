@@ -4,25 +4,15 @@ public class Order {
     private String orderId;
     private List<String> items;
     private double totalPrice;
+    private Customer customer;
+    private Payment payment;
 
-    private String customerName;
-    private String customerAddress;
-    private String customerEmail;
-
-    private String paymentMethod;
-    private boolean paymentStatus;
-
-    public Order(String orderId, List<String> items, double totalPrice,
-                 String customerName, String customerAddress, String customerEmail,
-                 String paymentMethod, boolean paymentStatus) {
+    public Order(String orderId, List<String> items, double totalPrice, Customer customer, Payment payment) {
         this.orderId = orderId;
         this.items = items;
         this.totalPrice = totalPrice;
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerEmail = customerEmail;
-        this.paymentMethod = paymentMethod;
-        this.paymentStatus = paymentStatus;
+        this.customer = customer;
+        this.payment = payment;
     }
 
     public void printOrderDetails() {
@@ -32,18 +22,10 @@ public class Order {
     }
 
     public void printCustomerInfo() {
-        System.out.println("Customer: " + customerName);
-        System.out.println("Address: " + customerAddress);
-        System.out.println("Email: " + customerEmail);
+        customer.printCustomerInfo();
     }
 
     public void processPayment() {
-        if (!paymentStatus) {
-            System.out.println("Processing payment via " + paymentMethod);
-            paymentStatus = true;
-            System.out.println("Payment successful!");
-        } else {
-            System.out.println("Payment already completed.");
-        }
+        payment.processPayment();
     }
 }
